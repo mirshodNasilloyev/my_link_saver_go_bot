@@ -1,0 +1,40 @@
+name: CI/CD to Railway
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.23'
+
+      - name: Build Docker image
+        run: |
+          docker build -t tg-bot-youtube-go:latest .
+
+      - name: Set environment variables
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+          CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
+        run: echo "Environment variables set."
+
+      - name: Install Railway CLI
+        run: |
+          curl -fsSL https://railway.app/install.sh | sh
+          export PATH="$PATH:/home/runner/.railway/bin"
+
+      - name: Deploy to Railway
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: |
+          railway up

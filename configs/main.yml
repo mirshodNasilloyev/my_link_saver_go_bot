@@ -1,0 +1,15 @@
+db_path: "bot.db"
+
+telegram_bot_url: "https://t.me/my_link_saver_bot"
+
+messages:
+  responses:
+    start: "Salom! Pocket akkauntingizda havolalarni saqlash uchun, avvalo menga bunga ruxsat berishingiz kerak. Buning uchun quyidagi havolaga o'ting:\n %s"
+    already_authorized: "Siz allaqachon avtorizatsiyadan o'tgansiz\n"
+    saved_successfully: "Link saved successufully"
+    unknown_command: "Siz mavjud bo'lmagan comandani berdingiz"
+  errors:
+    default: "Error was found"
+    invalid_url: "Bu message link emas"
+    unauthorized: "Siz avtorizatsiyadan o'tmagansiz. Buni amalga oshirish uchun /start ni bosing"
+    unable_to_save: "Opps, Saqlashni iloji bo'lmadi. Birozdan so'ng qayta urinib ko'ring"
